@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class mainMenu : MonoBehaviour {
+    private GameObject settingsMenu;
+
+    void Awake()
+    {
+        this.settingsMenu = GameObject.Find("Settings Menu");
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +28,8 @@ public class mainMenu : MonoBehaviour {
 
     public void settingsButton()
     {
-
+        this.settingsMenu.SetActive(true);
+        this.gameObject.SetActive(false);
     }
     public void exitButton()
     {
