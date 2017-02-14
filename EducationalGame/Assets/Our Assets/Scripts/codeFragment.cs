@@ -6,15 +6,17 @@ using UnityEngine.UI;
 public class codeFragment : MonoBehaviour {
     public bool beingDragged = false;
     public string text;
+    public Sprite deadSprite;
 
     private float offsetX, offsetY;
     private Vector3 origin;
-    private GameObject mainCamera;
+    private GameObject mainCamera, player;
     private Text codeText;
 
     void Awake()
     {
         mainCamera = GameObject.Find("Main Camera");
+        player = GameObject.Find("Player");
         codeText = this.transform.FindChild("Text").GetComponent<Text>();
     }
 
@@ -48,7 +50,16 @@ public class codeFragment : MonoBehaviour {
 
         if (hit)
         {
+            if (hit.transform.tag == "death" && hit.transform.name == this.text)
+            {
+                this.transform.position = hit.transform.position;
+            }
 
+            else
+            {
+                this.player.GetComponent<SpriteRenderer>().sprite = this.deadSprite;
+                this.transform.position = origin;
+            }
         }
         else
         {
