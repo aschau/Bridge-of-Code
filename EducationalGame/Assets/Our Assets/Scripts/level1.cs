@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class level1 : MonoBehaviour
 {
-    private GameObject helpMenu;
+    private GameObject _helpMenu;
     void Awake()
     {
-        this.helpMenu = GameObject.Find("Help Menu");
+        this._helpMenu = GameObject.Find("Help Menu");
     }
     // Use this for initialization
     void Start()
@@ -14,16 +13,16 @@ public class level1 : MonoBehaviour
 
     }
 
-    public void helpButton()
+    public void HelpButton()
     {
-        this.helpMenu.SetActive(true);
+        _helpMenu.SetActive(true);
         //this.gameObject.SetActive(false);
     }
 
-    public void exitFromHelpButton()
+    public void ExitFromHelpButton()
     {
-        this.helpMenu.SetActive(false);
-        SceneManager.LoadScene("Level 1");
+        _helpMenu.SetActive(false);
+        //GameObject.Find("Main Screen").SetActive(true);
     }
 
 
