@@ -50,16 +50,24 @@ public class codeFragment : MonoBehaviour {
 
         if (hit)
         {
-            if (hit.transform.tag == "death" && hit.transform.name == this.text)
+            if (hit.transform.tag == "death")
             {
-                this.transform.position = hit.transform.position;
+                hit.transform.GetChild(0).gameObject.SetActive(true);
+                hit.transform.GetChild(0).GetComponentInChildren<Text>().text = this.name;
+                hit.transform.GetComponent<BoxCollider2D>().enabled = false;
+                this.gameObject.SetActive(false);
             }
 
-            else
-            {
-                this.player.GetComponent<SpriteRenderer>().sprite = this.deadSprite;
-                this.transform.position = origin;
-            }
+            //if (hit.transform.tag == "death" && hit.transform.name == this.text)
+            //{
+            //    this.gameObject.SetActive(false);
+            //}
+
+            //else
+            //{
+            //    this.player.GetComponent<SpriteRenderer>().sprite = this.deadSprite;
+            //    this.transform.position = origin;
+            //}
         }
         else
         {
