@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: a3bdbf3372f80c74b9678ed2443420b1
+timeCreated: 1487663802
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: SORRY_SORRY
+  fontNames:
+  - SORRY_SORRY
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
