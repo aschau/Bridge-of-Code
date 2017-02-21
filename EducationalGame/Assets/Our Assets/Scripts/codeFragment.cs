@@ -31,6 +31,7 @@ public class codeFragment : MonoBehaviour {
 
     public void beginDrag()
     {
+        this.mainCamera.GetComponent<playerCamera>().selecting = true;
         offsetX = this.transform.position.x - Input.mousePosition.x;
         offsetY = this.transform.position.y - Input.mousePosition.y;
         this.beingDragged = true;
@@ -44,6 +45,7 @@ public class codeFragment : MonoBehaviour {
     public void endDrag()
     {
         this.beingDragged = false;
+        this.mainCamera.GetComponent<playerCamera>().selecting = false;
         RaycastHit2D hit = checkHit(this.mainCamera);
 
         if (hit)
