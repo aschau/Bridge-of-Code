@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: afbcbaff318a94d498e3bd702210e5f8
+timeCreated: 1487664213
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: JFRockSolid
+  fontNames:
+  - JFRockSolid
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
