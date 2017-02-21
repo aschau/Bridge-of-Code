@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class mainMenu : MonoBehaviour {
@@ -34,5 +32,10 @@ public class mainMenu : MonoBehaviour {
     public void exitButton()
     {
         Application.Quit();
+    }
+
+    public void demoButton()
+    {
+        SceneManager.LoadScene("Help Menu");
     }
 }
