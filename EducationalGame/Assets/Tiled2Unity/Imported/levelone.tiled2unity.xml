@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 2/21/2017 7:10:32 PM-->
+<!--Last exported: 2/21/2017 7:23:23 PM-->
 <Tiled2Unity version="1.0.9.7">
   <AssignMaterial mesh="mesh_0001" material="tilesheet_complete_2X" />
   <Prefab name="levelone" orientation="Orthogonal" staggerAxis="Y" staggerIndex="Odd" hexSideLength="0" numLayers="1" numTilesWide="50" numTilesHigh="50" tileWidth="128" tileHeight="128" exportScale="1" mapWidthInPixels="6400" mapHeightInPixels="6400" backgroundColor="#808080">
@@ -29,7 +29,6 @@
           <Path>4480,-5632 4352,-5632 4352,-5760 4480,-5760</Path>
           <Path>3585,-5632 3457,-5632 3457,-5760 3585,-5760</Path>
           <Path>4097,-5633 3969,-5633 3969,-5761 4097,-5761</Path>
-          <Path>2432,-5634 2304,-5634 2304,-5762 2432,-5762</Path>
           <Path>3712,-6272 3713,-6272 3713,-6400 6401,-6400 6401,-5891 6402,-5891 6402,-5763 3074,-5763 3074,-5888 3073,-5888 3073,-6016 2433,-6016 2433,-5891 2434,-5891 2434,-5763 2,-5763 2,-5888 1,-5888 1,-6400 3712,-6400</Path>
           <Path>4864,-6016 4864,-5891 4865,-5891 4865,-6016</Path>
           <Path>1408,-6144 1408,-6016 1409,-6016 1409,-6144</Path>
