@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 public class helpItemsDisplay : MonoBehaviour
 {
-	public Text title;
+	public Text term;
 	public Text description;
+    public Text syntax;
 
 
     public helpItem item; 
@@ -22,8 +23,9 @@ public class helpItemsDisplay : MonoBehaviour
     {
         this.item = item;
 
-        this.title.text = item.title;
+        this.term.text = item.term;
         this.description.text = item.description;
+        this.syntax.text = item.syntax; 
 
 
     }
