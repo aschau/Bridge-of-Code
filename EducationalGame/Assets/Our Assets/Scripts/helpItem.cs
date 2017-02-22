@@ -2,11 +2,12 @@
 
 public class helpItem : MonoBehaviour
 {
-	public string title;
+	public string term;
 
-    [Multiline]
-	public string description;
-    // Use this for initialization
+	[Multiline] public string description;
+
+	[Multiline] public string syntax;  
+	// Use this for initialization
 	void Start () {
 		
 	}
