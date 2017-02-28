@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 public class playerControl : MonoBehaviour {
-    public float speed = 20f;
+    public float speed = 450f;
     public bool dead;
     private List<codePlacement> walkPoints;
     private int currentPoint;
