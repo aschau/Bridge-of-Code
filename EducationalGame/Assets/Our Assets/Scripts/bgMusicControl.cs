@@ -16,15 +16,21 @@ public class bgMusicControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.GetComponent<Slider> ().value = volumeAmount;
+		GameObject.Find("Background Music").GetComponent<AudioSource> ().volume = PlayerPrefs.GetFloat ("volume");
+		this.GetComponent<Slider> ().value = PlayerPrefs.GetFloat ("slider");
+		//this.GetComponent<Slider> ().value = volumeAmount;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		volumeAmount = this.GetComponent<Slider> ().value;
+
 	}
 
 	public void setVolume(){
 		this.bgMusic.volume = this.ogVolume * this.GetComponent<Slider> ().value;
+		volumeAmount = this.GetComponent<Slider> ().value;
+		PlayerPrefs.SetFloat ("slider", volumeAmount);
+		PlayerPrefs.SetFloat ("volume", this.bgMusic.volume);
+		PlayerPrefs.Save ();
 	}
 }

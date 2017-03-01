@@ -20,17 +20,22 @@ public class soundControl : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
+		GameObject.FindGameObjectsWithTag ("sound") = PlayerPrefs.GetFloat ("volume");
 		this.GetComponent<Slider> ().value = volumeAmount;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		volumeAmount = this.GetComponent<Slider> ().value;
+		
 	}
 
 	public void setVolume(){
 		for (int i = 0; i < this.sound.Length; i++) {
 			this.sound [i].GetComponent<AudioSource> ().volume = this.soundVolume [i] * this.GetComponent<Slider> ().value;
 		}
+		volumeAmount = this.GetComponent<Slider> ().value;
+		PlayerPrefs.SetFloat ("slider", volumeAmount);
+		PlayerPrefs.SetFloat ("volume", this.sound [i].GetComponent<AudioSource> ().volume);
+		PlayerPrefs.Save ();
 	}
 }
