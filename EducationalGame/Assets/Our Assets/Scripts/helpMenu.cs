@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class helpMenu : MonoBehaviour
 {
@@ -22,5 +23,10 @@ public class helpMenu : MonoBehaviour
     {
         this.level1.SetActive(true);
         this.gameObject.SetActive(false);
+    }
+
+    public void backToMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 }
