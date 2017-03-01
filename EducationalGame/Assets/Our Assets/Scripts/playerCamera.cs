@@ -10,11 +10,13 @@ public class playerCamera : MonoBehaviour {
     private Vector2 mouseOrigin;
     private float cameraWidth, cameraHeight;
     private bool panning;
+    private sceneControl sceneController;
 
     void Awake()
     {
         this.leftCorner = GameObject.Find("Left Bound").transform.position;
         this.rightCorner = GameObject.Find("Right Bound").transform.position;
+        this.sceneController = GameObject.Find("Scene Control").GetComponent<sceneControl>();
     }
 
 	// Use this for initialization
@@ -27,7 +29,7 @@ public class playerCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!this.selecting)
+        if (!this.selecting && !this.sceneController.paused)
         {
             if (!this.panning)
             {

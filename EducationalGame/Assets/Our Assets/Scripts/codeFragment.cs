@@ -10,12 +10,16 @@ public class codeFragment : MonoBehaviour {
     private float offsetX, offsetY;
     private Vector3 origin;
     private GameObject mainCamera;
+    private sceneControl sceneController;
+    private playerCamera cameraScript;
     private Text codeText;
 
     void Awake()
     {
         mainCamera = GameObject.Find("Main Camera");
+        cameraScript = mainCamera.GetComponent<playerCamera>();
         codeText = this.transform.FindChild("Text").GetComponent<Text>();
+        this.sceneController = GameObject.Find("Scene Control").GetComponent<sceneControl>();
     }
 
 	// Use this for initialization
@@ -31,46 +35,56 @@ public class codeFragment : MonoBehaviour {
 
     public void beginDrag()
     {
-        this.mainCamera.GetComponent<playerCamera>().selecting = true;
-        offsetX = this.transform.position.x - Input.mousePosition.x;
-        offsetY = this.transform.position.y - Input.mousePosition.y;
-        this.beingDragged = true;
+        if (!this.sceneController.paused)
+        {
+            this.cameraScript.selecting = true;
+            offsetX = this.transform.position.x - Input.mousePosition.x;
+            offsetY = this.transform.position.y - Input.mousePosition.y;
+            this.beingDragged = true;
+        }
+
     }
 
     public void onDrag()
     {
-        this.transform.position = new Vector3(Input.mousePosition.x + offsetX, Input.mousePosition.y + offsetY);
+        if (!this.sceneController.paused)
+        {
+            this.transform.position = new Vector3(Input.mousePosition.x + offsetX, Input.mousePosition.y + offsetY);
+        }
     }
 
     public void endDrag()
     {
-        this.beingDragged = false;
-        this.mainCamera.GetComponent<playerCamera>().selecting = false;
-        RaycastHit2D hit = checkHit(this.mainCamera);
-
-        if (hit)
+        if (!this.sceneController.paused)
         {
-            if (hit.transform.tag == "death" && !hit.transform.GetComponent<codePlacement>().activated)
+            this.beingDragged = false;
+            this.cameraScript.selecting = false;
+            RaycastHit2D hit = checkHit(this.mainCamera);
+
+            if (hit)
             {
-                hit.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
-                hit.transform.GetComponentInChildren<Text>().text = this.name;
-                hit.transform.GetComponent<codePlacement>().activated = true;
-                if (hit.transform.name ==  this.text)
+                if (hit.transform.tag == "death" && !hit.transform.GetComponent<codePlacement>().activated)
                 {
-                    hit.transform.GetComponent<codePlacement>().correct = true;
+                    hit.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+                    hit.transform.GetComponentInChildren<Text>().text = this.name;
+                    hit.transform.GetComponent<codePlacement>().activated = true;
+                    if (hit.transform.name == this.text)
+                    {
+                        hit.transform.GetComponent<codePlacement>().correct = true;
+                    }
+                    this.gameObject.SetActive(false);
+
                 }
-                this.gameObject.SetActive(false);
 
+                else
+                {
+                    this.transform.position = origin;
+                }
             }
-
             else
             {
                 this.transform.position = origin;
             }
-        }
-        else
-        {
-            this.transform.position = origin;
         }
 
     }
