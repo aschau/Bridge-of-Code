@@ -1,0 +1,11 @@
+Welcome to Life of Py! My life to be exact. I'm on an adventure to grab some shizzle wizzle, but I need your help! Press my head to learn more.
+|
+I need to advance on my quest, but these huge gaps are in my way. It looks like these signs are here to give us clues on what to do. 
+|
+Seems like we're starting off with "X = 11" and our output needs to be "X = 11".
+|
+What a piece of cake! It's already the right value. We just need to make sure we use the correct line of code to connect the two.
+|
+*Help me make a bridge by dragging the correct piece of code into the correct slot.
+|
+You did it good job! Return statements output whatever a variable contains at the time. You just need to make sure you're returning the right thing!
