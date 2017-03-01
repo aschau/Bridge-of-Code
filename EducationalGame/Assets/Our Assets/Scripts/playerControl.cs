@@ -30,13 +30,20 @@ public class playerControl : MonoBehaviour {
         {
             if (this.walkPoints[this.currentPoint].activated)
             {
-                this.anim.Play("playerRolling");
+                if (!this.anim.GetCurrentAnimatorStateInfo(0).IsName("playerRolling"))
+                {
+                    this.anim.Play("playerRolling");
+                }
                 this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.walkPoints[this.currentPoint].transform.position.x, this.transform.position.y), this.speed * Time.deltaTime);
             }
 
             if (this.transform.position.x == this.walkPoints[this.currentPoint].transform.position.x)
             {
-                this.anim.Play("playerIdle");
+                this.walkPoints[this.currentPoint].activated = false;
+                if (!this.anim.GetCurrentAnimatorStateInfo(0).IsName("playerIdle"))
+                {
+                    this.anim.Play("playerIdle");
+                }
                 if (this.currentPoint < this.walkPoints.Count - 1)
                 {
                     this.currentPoint++;
