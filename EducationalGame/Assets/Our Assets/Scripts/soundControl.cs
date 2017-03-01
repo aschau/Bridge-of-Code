@@ -20,7 +20,9 @@ public class soundControl : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		GameObject.FindGameObjectsWithTag ("sound") = PlayerPrefs.GetFloat ("volume");
+		for (int i = 0; i < this.sound.Length; i++) {
+			this.sound [i].GetComponent<AudioSource> ().volume = PlayerPrefs.GetFloat ("volume");
+		}
 		this.GetComponent<Slider> ().value = volumeAmount;
 	}
 	
@@ -32,10 +34,10 @@ public class soundControl : MonoBehaviour {
 	public void setVolume(){
 		for (int i = 0; i < this.sound.Length; i++) {
 			this.sound [i].GetComponent<AudioSource> ().volume = this.soundVolume [i] * this.GetComponent<Slider> ().value;
+			PlayerPrefs.SetFloat ("volume", this.sound [i].GetComponent<AudioSource> ().volume);
 		}
 		volumeAmount = this.GetComponent<Slider> ().value;
 		PlayerPrefs.SetFloat ("slider", volumeAmount);
-		PlayerPrefs.SetFloat ("volume", this.sound [i].GetComponent<AudioSource> ().volume);
 		PlayerPrefs.Save ();
 	}
 }

@@ -9,6 +9,7 @@ public class playerControl : MonoBehaviour {
     private List<codePlacement> walkPoints;
     private int currentPoint;
     private Animator anim;
+    private sceneControl sceneController;
 
 
     void Awake()
@@ -16,6 +17,7 @@ public class playerControl : MonoBehaviour {
         this.walkPoints = new List<codePlacement>(GameObject.FindObjectsOfType<codePlacement>());
         this.walkPoints = this.walkPoints.OrderBy(x => Vector2.Distance(this.transform.position, x.transform.position)).ToList();
         this.anim = this.GetComponent<Animator>();
+        this.sceneController = GameObject.Find("Scene Control").GetComponent<sceneControl>();
     }
 
 	// Use this for initialization
@@ -26,29 +28,37 @@ public class playerControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!this.dead)
+        if (!this.sceneController.paused)
         {
-            if (this.walkPoints[this.currentPoint].activated)
+            if (!this.dead)
             {
-                if (!this.anim.GetCurrentAnimatorStateInfo(0).IsName("playerRolling"))
+                if (this.walkPoints[this.currentPoint].activated)
                 {
-                    this.anim.Play("playerRolling");
+                    if (!this.anim.GetCurrentAnimatorStateInfo(0).IsName("playerRolling"))
+                    {
+                        this.anim.Play("playerRolling");
+                    }
+                    this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.walkPoints[this.currentPoint].transform.position.x, this.transform.position.y), this.speed * Time.deltaTime);
                 }
-                this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.walkPoints[this.currentPoint].transform.position.x, this.transform.position.y), this.speed * Time.deltaTime);
-            }
 
-            if (this.transform.position.x == this.walkPoints[this.currentPoint].transform.position.x)
-            {
-                this.walkPoints[this.currentPoint].activated = false;
-                if (!this.anim.GetCurrentAnimatorStateInfo(0).IsName("playerIdle"))
+                if (this.transform.position.x == this.walkPoints[this.currentPoint].transform.position.x)
                 {
-                    this.anim.Play("playerIdle");
-                }
-                if (this.currentPoint < this.walkPoints.Count - 1)
-                {
-                    this.currentPoint++;
+                    this.walkPoints[this.currentPoint].activated = false;
+                    if (!this.anim.GetCurrentAnimatorStateInfo(0).IsName("playerIdle"))
+                    {
+                        this.anim.Play("playerIdle");
+                    }
+                    if (this.currentPoint < this.walkPoints.Count - 1)
+                    {
+                        this.currentPoint++;
+                    }
                 }
             }
+        }
+
+        else
+        {
+            //this.GetComponent<Rigidbody2D>().
         }
 	}
 }

@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class pause : MonoBehaviour {
-	private timer timerObject;
-
+    private sceneControl sceneController;
 	void Awake()
 	{
-		timerObject = GameObject.Find ("Timer").GetComponent<timer>();
+        this.sceneController = GameObject.Find("Scene Control").GetComponent<sceneControl>();
 	}
 
 	// Use this for initialization
@@ -24,11 +23,7 @@ public class pause : MonoBehaviour {
 	public void toggleMenu()
 	{
 		this.gameObject.SetActive (!this.gameObject.activeSelf);
-		if (this.gameObject.activeSelf) {
-			timerObject.paused = true;
-		} else {
-			timerObject.paused = false;
-		}
+        this.sceneController.togglePause();
 	}
 
 	public void exit(){
