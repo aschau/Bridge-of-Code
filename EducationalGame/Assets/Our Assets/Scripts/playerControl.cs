@@ -9,7 +9,6 @@ public class playerControl : MonoBehaviour {
     private List<codePlacement> walkPoints;
     private int currentPoint;
     private Animator anim;
-    private sceneControl sceneController;
 
 
     void Awake()
@@ -17,7 +16,6 @@ public class playerControl : MonoBehaviour {
         this.walkPoints = new List<codePlacement>(GameObject.FindObjectsOfType<codePlacement>());
         this.walkPoints = this.walkPoints.OrderBy(x => Vector2.Distance(this.transform.position, x.transform.position)).ToList();
         this.anim = this.GetComponent<Animator>();
-        this.sceneController = GameObject.Find("Scene Control").GetComponent<sceneControl>();
     }
 
 	// Use this for initialization
@@ -28,8 +26,10 @@ public class playerControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!this.sceneController.paused)
+        if (!sceneControl.paused)
         {
+            this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+
             if (!this.dead)
             {
                 if (this.walkPoints[this.currentPoint].activated)
@@ -58,7 +58,7 @@ public class playerControl : MonoBehaviour {
 
         else
         {
-            //this.GetComponent<Rigidbody2D>().
+            this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         }
 	}
 }

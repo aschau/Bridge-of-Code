@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class sceneControl : MonoBehaviour {
     private timer timerObject;
-    public bool paused;
+    public static bool paused;
     void Awake()
     {
         if (GameObject.Find("Timer"))
@@ -16,7 +16,7 @@ public class sceneControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        paused = false;
 	}
 	
 	// Update is called once per frame
@@ -25,8 +25,8 @@ public class sceneControl : MonoBehaviour {
 
     public void togglePause()
     {
-        this.paused = !this.paused;
-        if (this.paused)
+        paused = !paused;
+        if (paused)
         {
             if (this.timerObject)
             {

@@ -10,7 +10,6 @@ public class codeFragment : MonoBehaviour {
     private float offsetX, offsetY;
     private Vector3 origin;
     private GameObject mainCamera;
-    private sceneControl sceneController;
     private playerCamera cameraScript;
     private Text codeText;
 
@@ -19,7 +18,6 @@ public class codeFragment : MonoBehaviour {
         mainCamera = GameObject.Find("Main Camera");
         cameraScript = mainCamera.GetComponent<playerCamera>();
         codeText = this.transform.FindChild("Text").GetComponent<Text>();
-        this.sceneController = GameObject.Find("Scene Control").GetComponent<sceneControl>();
     }
 
 	// Use this for initialization
@@ -35,7 +33,7 @@ public class codeFragment : MonoBehaviour {
 
     public void beginDrag()
     {
-        if (!this.sceneController.paused)
+        if (!sceneControl.paused)
         {
             this.cameraScript.selecting = true;
             offsetX = this.transform.position.x - Input.mousePosition.x;
@@ -47,7 +45,7 @@ public class codeFragment : MonoBehaviour {
 
     public void onDrag()
     {
-        if (!this.sceneController.paused)
+        if (!sceneControl.paused)
         {
             this.transform.position = new Vector3(Input.mousePosition.x + offsetX, Input.mousePosition.y + offsetY);
         }
@@ -55,7 +53,7 @@ public class codeFragment : MonoBehaviour {
 
     public void endDrag()
     {
-        if (!this.sceneController.paused)
+        if (!sceneControl.paused)
         {
             this.beingDragged = false;
             this.cameraScript.selecting = false;
