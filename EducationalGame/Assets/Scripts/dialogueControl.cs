@@ -36,7 +36,7 @@ public class dialogueControl : MonoBehaviour {
         if (textFile)
         {
             this.index = index;
-            this.textList = textFile.text.Split(new string[] { System.Environment.NewLine + "|" + System.Environment.NewLine }, StringSplitOptions.None);
+            this.textList = textFile.text.Split(new string[] { System.Environment.NewLine + "|" + System.Environment.NewLine, "\n|\r\n" }, StringSplitOptions.None);
             if (this.textList[this.index][0] == '*')
             {
                 this.locked = true;
