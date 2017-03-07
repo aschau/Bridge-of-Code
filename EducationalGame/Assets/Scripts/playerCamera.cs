@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playerCamera : MonoBehaviour {
-    public float speed = 160f;
+    public float speed = 10000f;
     public bool selecting;
 
     private Vector2 leftCorner, rightCorner;
@@ -41,8 +41,8 @@ public class playerCamera : MonoBehaviour {
 
             else if (Input.touchCount > 0)
             {
-                Vector2 touchDeltaPosition = Input.GetTouch(0).position;
-                transform.Translate(-touchDeltaPosition.x * Time.deltaTime * speed, -touchDeltaPosition.y * Time.deltaTime * speed, 0);
+                Vector3 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+                transform.position -= touchDeltaPosition;
             }
         }
 
