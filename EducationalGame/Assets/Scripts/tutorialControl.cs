@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class tutorialControl : MonoBehaviour {
@@ -10,7 +8,10 @@ public class tutorialControl : MonoBehaviour {
     private playerControl playerController;
     private dialogueControl dControl;
     private int index = 0; //which part of the tutorial that the user has to interact with, in order
-    
+
+    //gameOver & victory load:
+    private GameObject _gameOver;
+    private GameObject _victory;
     void Awake()
     {
         this.player = GameObject.Find("Player");
@@ -19,6 +20,11 @@ public class tutorialControl : MonoBehaviour {
         this.dControl = this.chatBox.GetComponent<dialogueControl>();
         this.tutorial = (TextAsset)Resources.Load(SceneManager.GetActiveScene().name);
         this.failure = (TextAsset)Resources.Load(SceneManager.GetActiveScene().name + " Fail");
+
+        this._gameOver = GameObject.Find("GameOver");
+        this._victory = GameObject.Find("Victory");
+       
+
     }
 
 	// Use this for initialization
@@ -28,6 +34,9 @@ public class tutorialControl : MonoBehaviour {
         sceneControl.locked = true;
         Invoke("toggleChatBox", 1f);
         this.dControl.startDialogue(this.tutorial, 0);
+
+        _gameOver.SetActive(false);
+        _victory.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -44,9 +53,8 @@ public class tutorialControl : MonoBehaviour {
             }
             else if (this.playerController.dead)
             {
-                sceneControl.toggleLock();
-                sceneControl.togglePause();
-                this.dControl.startDialogue(this.failure, this.index);
+                StartCoroutine(MyCoroutine());
+
             }
         }
 	}
@@ -55,4 +63,23 @@ public class tutorialControl : MonoBehaviour {
     {
         this.chatBox.SetActive(!this.chatBox.activeSelf);
     }
+
+    IEnumerator MyCoroutine()
+    {
+        //This is a coroutine
+
+        sceneControl.toggleLock();
+        sceneControl.togglePause();
+        this.dControl.startDialogue(this.failure, this.index);
+
+        double duration = 0.85;
+        yield return new WaitForSeconds((float)duration);     //Wait for 5 seconds
+
+        //do something else
+        _gameOver.SetActive(true);
+
+    }
+
+
+
 }

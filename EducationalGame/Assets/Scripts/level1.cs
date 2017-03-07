@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class level1 : MonoBehaviour
 {
@@ -31,4 +32,16 @@ public class level1 : MonoBehaviour
     {
 
     }
+
+
+    public void restart()
+    {
+        SceneManager.LoadScene("Level 1");
+    }
+
+    public void nextLevel()
+    {
+        SceneManager.LoadScene("Level 2");
+    }
+
 }

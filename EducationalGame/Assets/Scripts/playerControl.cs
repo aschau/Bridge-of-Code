@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class playerControl : MonoBehaviour {
     public List<codePlacement> walkPoints;
@@ -11,12 +10,21 @@ public class playerControl : MonoBehaviour {
     private int currentPoint;
     private Animator anim;
 
+    public GameObject GameOver;
+    public GameObject Victory; 
+
 
     void Awake()
     {
         this.walkPoints = new List<codePlacement>(GameObject.FindObjectsOfType<codePlacement>());
         this.walkPoints = this.walkPoints.OrderBy(x => Vector2.Distance(this.transform.position, x.transform.position)).ToList();
         this.anim = this.GetComponent<Animator>();
+
+        GameOver = GameObject.Find("GameOver");
+        GameOver = GameObject.Find("Victory");
+
+
+     
     }
 
 	// Use this for initialization
@@ -55,6 +63,7 @@ public class playerControl : MonoBehaviour {
                     }
                 }
             }
+
         }
 
         else
@@ -62,4 +71,7 @@ public class playerControl : MonoBehaviour {
             this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         }
 	}
+
+
+ 
 }
