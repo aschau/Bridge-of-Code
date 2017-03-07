@@ -31,12 +31,18 @@ public class playerCamera : MonoBehaviour {
 	void Update () {
         if (!this.selecting && !sceneControl.paused)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && !Application.isMobilePlatform)
             {
                 if (Input.GetAxis("Mouse X") > 0 || Input.GetAxis("Mouse X") < 0)
                 {
                     transform.position -= new Vector3(Input.GetAxisRaw("Mouse X") * Time.deltaTime * speed, Input.GetAxisRaw("Mouse Y") * Time.deltaTime * speed, 0);
                 }
+            }
+
+            else if (Input.touchCount > 0)
+            {
+                Vector2 touchDeltaPosition = Input.GetTouch(0).position;
+                transform.Translate(-touchDeltaPosition.x * Time.deltaTime * speed, -touchDeltaPosition.y * Time.deltaTime * speed, 0);
             }
         }
 
