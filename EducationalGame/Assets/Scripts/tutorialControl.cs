@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class tutorialControl : MonoBehaviour {
@@ -52,13 +53,8 @@ public class tutorialControl : MonoBehaviour {
             }
             else if (this.playerController.dead)
             {
-                sceneControl.toggleLock();
-                sceneControl.togglePause();
-                this.dControl.startDialogue(this.failure, this.index);
+                StartCoroutine(MyCoroutine());
 
-                _gameOver.SetActive(true);
-
-                
             }
         }
 	}
@@ -68,6 +64,22 @@ public class tutorialControl : MonoBehaviour {
         this.chatBox.SetActive(!this.chatBox.activeSelf);
     }
 
-  
-    
+    IEnumerator MyCoroutine()
+    {
+        //This is a coroutine
+
+        sceneControl.toggleLock();
+        sceneControl.togglePause();
+        this.dControl.startDialogue(this.failure, this.index);
+
+        double duration = 0.85;
+        yield return new WaitForSeconds((float)duration);     //Wait for 5 seconds
+
+        //do something else
+        _gameOver.SetActive(true);
+
+    }
+
+
+
 }
