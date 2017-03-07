@@ -68,12 +68,6 @@ public class playerControl : MonoBehaviour {
                 }
             }
 
-
-            if (currentPoint == walkPoints.Count)
-            {
-                Victory.SetActive(true);
-            }
-
         }
 
         else
