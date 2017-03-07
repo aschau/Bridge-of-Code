@@ -31,4 +31,9 @@ public class victoryGameOver : MonoBehaviour {
 		SceneManager.LoadScene(sceneName);
 		
 	}
+
+    public void exit()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
 }
