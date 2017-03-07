@@ -10,8 +10,8 @@ public class playerControl : MonoBehaviour {
     private int currentPoint;
     private Animator anim;
 
-    public GameObject _gameOver;
-    public GameObject _victory; 
+    public GameObject GameOver;
+    public GameObject Victory; 
 
 
     void Awake()
@@ -20,10 +20,11 @@ public class playerControl : MonoBehaviour {
         this.walkPoints = this.walkPoints.OrderBy(x => Vector2.Distance(this.transform.position, x.transform.position)).ToList();
         this.anim = this.GetComponent<Animator>();
 
+        GameOver = GameObject.Find("GameOver");
+        GameOver = GameObject.Find("Victory");
 
-        //gameOver & victory load:
-        this._gameOver = GameObject.Find("GameOver");
-        this._victory = GameObject.Find("Victory");
+
+     
     }
 
 	// Use this for initialization
@@ -62,6 +63,7 @@ public class playerControl : MonoBehaviour {
                     }
                 }
             }
+
         }
 
         else
@@ -71,12 +73,5 @@ public class playerControl : MonoBehaviour {
 	}
 
 
-    public void loadGameOver()
-    {
-        if (dead)
-        {
-            _gameOver.SetActive(true);
-
-        }
-    }
+ 
 }
