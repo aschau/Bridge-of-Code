@@ -45,15 +45,12 @@ public class tutorialControl : MonoBehaviour {
         {
             if (this.playerController.walkPoints[index].correct)
             {
-                this.dControl.advanceIndex();
-                this.index++;
-                sceneControl.toggleLock();
-                sceneControl.togglePause();
+                StartCoroutine(WinCoroutine());
 
             }
             else if (this.playerController.dead)
             {
-                StartCoroutine(MyCoroutine());
+                StartCoroutine(DeadCoroutine());
 
             }
         }
@@ -64,7 +61,7 @@ public class tutorialControl : MonoBehaviour {
         this.chatBox.SetActive(!this.chatBox.activeSelf);
     }
 
-    IEnumerator MyCoroutine()
+    IEnumerator DeadCoroutine()
     {
         //This is a coroutine
 
@@ -72,14 +69,30 @@ public class tutorialControl : MonoBehaviour {
         sceneControl.togglePause();
         this.dControl.startDialogue(this.failure, this.index);
 
-        double duration = 0.85;
-        yield return new WaitForSeconds((float)duration);     //Wait for 5 seconds
+
+        yield return new WaitForSeconds(0.85f); //Wait...
 
         //do something else
         _gameOver.SetActive(true);
+    }
+
+
+
+    IEnumerator WinCoroutine()
+    {
+        //This is a coroutine
+
+        this.dControl.advanceIndex();
+        this.index++;
+        sceneControl.toggleLock();
+        sceneControl.togglePause();
+
+        yield return new WaitForSeconds(1.75f); //Wait....
+
+        _victory.SetActive(true);
 
     }
 
 
 
-}
+ }
