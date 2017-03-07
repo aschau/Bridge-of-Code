@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class levelButton : MonoBehaviour {
 
@@ -16,9 +17,11 @@ public class levelButton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (levelCount == 1)
+		if (levelCount < Convert.ToInt32(this.gameObject.name.Substring(5)))
 		{
-			myButton.interactable = true;
+			myButton.interactable = false;
+			PlayerPrefs.SetInt ("levelCount", levelCount);
+			PlayerPrefs.Save ();
 		}
 	}
 
