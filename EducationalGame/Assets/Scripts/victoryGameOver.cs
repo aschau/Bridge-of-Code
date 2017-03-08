@@ -36,7 +36,6 @@ public class victoryGameOver : MonoBehaviour {
 	        if (this.playerController.dead)
 	        {
 	            StartCoroutine(DeadCoroutine());
-                //_gameOver.SetActive(true);
 
 	        }
 
