@@ -17,7 +17,7 @@ public class dialogueControl : MonoBehaviour {
     void Awake()
     {
         this.textBox = this.transform.FindChild("Text").GetComponent<Text>();
-        this.advanceButton = this.transform.FindChild("Image").GetComponent<Button>();
+        this.advanceButton = this.transform.FindChild("Chat Head").GetComponent<Button>();
         //textFile = (TextAsset)Resources.Load(SceneManager.GetActiveScene().name);
     }
 
