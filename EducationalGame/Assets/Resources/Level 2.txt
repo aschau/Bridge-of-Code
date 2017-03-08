@@ -1,0 +1,11 @@
+Wowzers, this level looks a lot harder than that last one. I don't think my friend is here, but I'm sure we can make it through!
+|
+*Scroll through the level to see everything. 
+|
+Ah, so there are 3 different gaps we have to fill this time. A "If", "If Else", and "Else" should fit in these!
+|
+Now that you have the jist on what your output is from scrolling, this should be a lot easier!
+|
+*Help me make a bridge by dragging the correct piece of code into the correct slot.
+|
+Yay! We're halfway there! Let's get out of this swamp.
