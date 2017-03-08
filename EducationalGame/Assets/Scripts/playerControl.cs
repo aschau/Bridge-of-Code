@@ -7,11 +7,10 @@ public class playerControl : MonoBehaviour {
 
     public float speed = 450f;
     public bool dead;
-    private int currentPoint;
-    private Animator anim;
+    public int currentPoint;
+    public Animator anim;
+    public bool move; 
 
-    public GameObject GameOver;
-    public GameObject Victory;
 
 
     void Awake()
@@ -19,11 +18,6 @@ public class playerControl : MonoBehaviour {
         this.walkPoints = new List<codePlacement>(GameObject.FindObjectsOfType<codePlacement>());
         this.walkPoints = this.walkPoints.OrderBy(x => Vector2.Distance(this.transform.position, x.transform.position)).ToList();
         this.anim = this.GetComponent<Animator>();
-
-        GameOver = GameObject.Find("GameOver");
-        Victory = GameObject.Find("Victory");
-
-
 
 
     }
@@ -33,8 +27,8 @@ public class playerControl : MonoBehaviour {
         this.dead = false;
         this.currentPoint = 0;
 
-        GameOver.SetActive(false);
-        Victory.SetActive(false);
+        this.move = false; 
+
     }
 	
 	// Update is called once per frame
@@ -50,6 +44,7 @@ public class playerControl : MonoBehaviour {
                     if (!this.anim.GetCurrentAnimatorStateInfo(0).IsName("playerRolling"))
                     {
                         this.anim.Play("playerRolling");
+                        this.move = true; 
                     }
                     this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(this.walkPoints[this.currentPoint].transform.position.x, this.transform.position.y), this.speed * Time.deltaTime);
                 }
@@ -66,6 +61,8 @@ public class playerControl : MonoBehaviour {
                         this.currentPoint++;
                     }
                 }
+
+                
             }
 
         }
