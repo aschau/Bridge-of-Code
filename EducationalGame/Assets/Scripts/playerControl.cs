@@ -11,7 +11,7 @@ public class playerControl : MonoBehaviour {
     private Animator anim;
 
     public GameObject GameOver;
-    public GameObject Victory; 
+    public GameObject Victory;
 
 
     void Awake()
@@ -21,17 +21,21 @@ public class playerControl : MonoBehaviour {
         this.anim = this.GetComponent<Animator>();
 
         GameOver = GameObject.Find("GameOver");
-        GameOver = GameObject.Find("Victory");
+        Victory = GameObject.Find("Victory");
 
 
-     
+
+
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         this.dead = false;
         this.currentPoint = 0;
-	}
+
+        GameOver.SetActive(false);
+        Victory.SetActive(false);
+    }
 	
 	// Update is called once per frame
 	void Update () {
