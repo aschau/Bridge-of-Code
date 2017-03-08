@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class tutorialControl : MonoBehaviour {
@@ -21,9 +20,6 @@ public class tutorialControl : MonoBehaviour {
 		this.tutorial = (TextAsset)Resources.Load(SceneManager.GetActiveScene().name);
 		this.failure = (TextAsset)Resources.Load(SceneManager.GetActiveScene().name + " Fail");
 
-		this._gameOver = GameObject.Find("GameOver");
-		this._victory = GameObject.Find("Victory");
-	   
 
 	}
 
@@ -34,9 +30,6 @@ public class tutorialControl : MonoBehaviour {
 		sceneControl.locked = true;
 		Invoke("toggleChatBox", 1f);
 		this.dControl.startDialogue(this.tutorial, 0);
-
-		_gameOver.SetActive(false);
-		_victory.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -45,14 +38,20 @@ public class tutorialControl : MonoBehaviour {
 		{
 			if (this.playerController.walkPoints[index].correct)
 			{
-				StartCoroutine(WinCoroutine());
+                this.dControl.advanceIndex();
+                this.index++;
+                sceneControl.toggleLock();
+                sceneControl.togglePause();
+                
 
 			}
 			else if (this.playerController.dead)
 			{
-				StartCoroutine(DeadCoroutine());
+                sceneControl.toggleLock();
+                sceneControl.togglePause();
+                this.dControl.startDialogue(this.failure, this.index);
 
-			}
+            }
 		}
 	}
 
@@ -61,33 +60,11 @@ public class tutorialControl : MonoBehaviour {
 		this.chatBox.SetActive(!this.chatBox.activeSelf);
 	}
 
-	IEnumerator DeadCoroutine()
-	{
-		//This is a coroutine
-
-		sceneControl.toggleLock();
-		sceneControl.togglePause();
-		this.dControl.startDialogue(this.failure, this.index);
-
-
-		yield return new WaitForSeconds(0.85f); //Wait...
-
-		//do something else
-		_gameOver.SetActive(true);
-	}
+	
 
 
 
-	IEnumerator WinCoroutine()
-	{
-
-		//This is a coroutine
-
-		yield return new WaitForSeconds(1.75f); //Wait....
-
-		_victory.SetActive(true);
-
-	}
+	
 
 
 
