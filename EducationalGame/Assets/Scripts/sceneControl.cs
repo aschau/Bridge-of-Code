@@ -17,15 +17,16 @@ public class sceneControl : MonoBehaviour {
     {
 	}
 
-    public static void togglePause()
+    public static void togglePause(bool state)
     {
         if (!locked)
-            paused = !paused;
-        Debug.Log(paused);
+            paused = state;
+        Debug.Log("Paused: " + paused);
     }
 
-    public static void toggleLock()
+    public static void toggleLock(bool state)
     {
-        locked = !locked;
+        locked = state;
+        Debug.Log("Locked: " + locked);
     }
 }

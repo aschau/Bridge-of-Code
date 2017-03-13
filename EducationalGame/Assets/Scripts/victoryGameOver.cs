@@ -21,9 +21,9 @@ public class victoryGameOver : MonoBehaviour {
         this._gameOver = GameObject.Find("GameOver");
         this._victory = GameObject.Find("Victory");
 
-		this.buttonSound = GameObject.Find("Button Sound").GetComponent<AudioSource>();
-		this.winSound = GameObject.Find("Victory Sound").GetComponent<AudioSource>();
-		this.loseSound = GameObject.Find("Game Over Sound").GetComponent<AudioSource>();
+        //this.buttonSound = GameObject.Find("Button Sound").GetComponent<AudioSource>();
+        //this.winSound = GameObject.Find("Victory Sound").GetComponent<AudioSource>();
+        //this.loseSound = GameObject.Find("Game Over Sound").GetComponent<AudioSource>();
 
     }
 
@@ -104,16 +104,16 @@ public class victoryGameOver : MonoBehaviour {
 
 	private void playWinSound()
 	{
-		this.winSound.Play();
+        //this.winSound.Play();
 	}
 
 	private void playLoseSound()
 	{
-		this.loseSound.Play();
+        //this.loseSound.Play();
 	}
 
 	private void playSound()
 	{
-		this.buttonSound.Play();
+        //this.buttonSound.Play();
 	}
 }

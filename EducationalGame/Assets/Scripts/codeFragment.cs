@@ -22,8 +22,8 @@ public class codeFragment : MonoBehaviour {
         cameraScript = mainCamera.GetComponent<playerCamera>();
         codeText = this.transform.FindChild("Text").GetComponent<Text>();
 
-		this.buildSound = GameObject.Find("Build Sound").GetComponent<AudioSource>();
-		this.deathSound = GameObject.Find("Death Sound").GetComponent<AudioSource>();
+        //this.buildSound = GameObject.Find("Build Sound").GetComponent<AudioSource>();
+        //this.deathSound = GameObject.Find("Death Sound").GetComponent<AudioSource>();
     }
 
 	// Use this for initialization
@@ -72,7 +72,7 @@ public class codeFragment : MonoBehaviour {
                     hit.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
                     hit.transform.GetComponentInChildren<Text>().text = this.name;
                     hit.transform.GetComponent<codePlacement>().activated = true;
-                    if (hit.transform.name == this.text)
+                    if (hit.transform.name == this.name)
                     {
                         hit.transform.GetComponent<codePlacement>().correct = true;
 						playbuildSound ();
@@ -102,11 +102,11 @@ public class codeFragment : MonoBehaviour {
 
 	private void playbuildSound()
 	{
-		this.buildSound.Play();
+        //this.buildSound.Play();
 	}
 
 	private void playdeathSound()
 	{
-		this.deathSound.Play();
+        //this.deathSound.Play();
 	}
 }

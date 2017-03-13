@@ -1,7 +1,5 @@
 Brrr. It's pretty cold out here. I have a gut feeling we're close to seeing him though!
 |
-*Scroll through the level to see everything. 
-|
 So this is like the last level. There are 3 more gaps we have to fill. A "For", "in", and "range(5)" will fit!
 |
 This is a bit different, but I have total faith in your skills!

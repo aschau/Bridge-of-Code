@@ -35,18 +35,33 @@ public class dialogueControl : MonoBehaviour {
     {
         if (textFile)
         {
-            this.index = index;
-            this.textList = textFile.text.Split(new string[] { System.Environment.NewLine + "|" + System.Environment.NewLine, "\n|\r\n" }, StringSplitOptions.None);
-            if (this.textList[this.index][0] == '*')
+            this.locked = false;
+
+            if (textFile.name.Contains("Fail"))
             {
-                this.locked = true;
+                string[] temp = textFile.text.Split(new string[] { System.Environment.NewLine + "|" + System.Environment.NewLine, "\n|\r\n" }, StringSplitOptions.None);
+                this.textList = new string[1];
+                this.textList[0] = temp[index];
+                this.index = 0;
+                this.printText();
+                this.advanceButton.interactable = false;
             }
 
             else
             {
-                this.locked = false;
-            }
+                this.index = index;
+                this.textList = textFile.text.Split(new string[] { System.Environment.NewLine + "|" + System.Environment.NewLine, "\n|\r\n" }, StringSplitOptions.None);
+                if (this.textList[this.index][0] == '*')
+                {
+                    this.locked = true;
+                }
+
+                else
+                {
+                    this.locked = false;
+                }
                 this.printText();
+            }
         }
     }
 
@@ -55,24 +70,25 @@ public class dialogueControl : MonoBehaviour {
         this.index++;
         if (this.index >= this.textList.Length)
         {
-            sceneControl.toggleLock();
-            sceneControl.togglePause();
+            sceneControl.toggleLock(false);
+            sceneControl.togglePause(false);
+
             this.gameObject.SetActive(false);
         }
         else
         {
             if (this.textList[this.index][0] == '*')
             {
-                this.advanceButton.interactable = false;
                 this.locked = true;
-                sceneControl.toggleLock();
-                sceneControl.togglePause();
+                sceneControl.toggleLock(false);
+                sceneControl.togglePause(false);
             }
 
             else
             {
                 this.locked = false;
-                this.advanceButton.interactable = true;
+                sceneControl.togglePause(true);
+                sceneControl.toggleLock(true);
             }
             this.printText();
         }
@@ -83,10 +99,12 @@ public class dialogueControl : MonoBehaviour {
         if (this.locked)
         {
             this.textBox.text = this.textList[this.index].Substring(1);
+            this.advanceButton.interactable = false;
         }
         else
         {
             this.textBox.text = this.textList[this.index];
+            this.advanceButton.interactable = true;
         }
     }
 }

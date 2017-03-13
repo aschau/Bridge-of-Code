@@ -21,7 +21,7 @@ public class pause : MonoBehaviour {
 	public void toggleMenu()
 	{
 		this.gameObject.SetActive (!this.gameObject.activeSelf);
-        sceneControl.togglePause();
+        sceneControl.togglePause(this.gameObject.activeSelf);
 	}
 
 	public void exit(){

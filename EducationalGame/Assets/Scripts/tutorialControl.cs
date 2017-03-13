@@ -36,21 +36,24 @@ public class tutorialControl : MonoBehaviour {
 	void Update () {
 		if (dControl.locked)
 		{
-			if (this.playerController.walkPoints[index].correct)
-			{
-                this.dControl.advanceIndex();
-                this.index++;
-                sceneControl.toggleLock();
-                sceneControl.togglePause();
-                
+            if (this.playerController.walkPoints[index].triggered)
+            {
+                if (this.playerController.walkPoints[index].correct)
+                {
+                    this.dControl.advanceIndex();
+                    this.index++;
+                    //sceneControl.toggleLock();
+                    //sceneControl.togglePause();
 
-			}
-			else if (this.playerController.dead)
-			{
-                sceneControl.toggleLock();
-                sceneControl.togglePause();
-                this.dControl.startDialogue(this.failure, this.index);
 
+                }
+                else if (this.playerController.dead)
+                {
+                    //sceneControl.toggleLock();
+                    //sceneControl.togglePause();
+                    this.dControl.startDialogue(this.failure, this.index);
+
+                }
             }
 		}
 	}
