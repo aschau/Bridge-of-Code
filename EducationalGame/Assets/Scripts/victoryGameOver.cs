@@ -9,7 +9,9 @@ public class victoryGameOver : MonoBehaviour {
     private GameObject _victory;
     private GameObject player;
     private playerControl playerController;
-
+	private AudioSource winSound;
+	private AudioSource loseSound;
+	private AudioSource buttonSound;
 
     void Awake()
     {
@@ -18,6 +20,10 @@ public class victoryGameOver : MonoBehaviour {
 
         this._gameOver = GameObject.Find("GameOver");
         this._victory = GameObject.Find("Victory");
+
+		this.buttonSound = GameObject.Find("Button Sound").GetComponent<AudioSource>();
+		this.winSound = GameObject.Find("Victory Sound").GetComponent<AudioSource>();
+		this.loseSound = GameObject.Find("Game Over Sound").GetComponent<AudioSource>();
 
     }
 
@@ -53,9 +59,9 @@ public class victoryGameOver : MonoBehaviour {
     {
 
         //This is a coroutine
-
+		playWinSound ();
         yield return new WaitForSeconds(2.5f); //Wait....
-        sceneControl.togglePause();
+        //sceneControl.togglePause();
         _victory.SetActive(true);
 
     }
@@ -63,9 +69,9 @@ public class victoryGameOver : MonoBehaviour {
     IEnumerator DeadCoroutine()
     {
         //This is a coroutine
-
+		playLoseSound ();
         yield return new WaitForSeconds(0.85f); //Wait...
-        sceneControl.togglePause();
+       // sceneControl.togglePause();
         //do something else
         _gameOver.SetActive(true);
     }
@@ -86,12 +92,28 @@ public class victoryGameOver : MonoBehaviour {
     public void load(string sceneName)
 	{
 		SceneManager.LoadScene(sceneName);
+		playSound ();
 		
 	}
 
     public void exit()
     {
         SceneManager.LoadScene("Main Menu");
+		playSound ();
     }
 
+	private void playWinSound()
+	{
+		this.winSound.Play();
+	}
+
+	private void playLoseSound()
+	{
+		this.loseSound.Play();
+	}
+
+	private void playSound()
+	{
+		this.buttonSound.Play();
+	}
 }

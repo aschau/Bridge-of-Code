@@ -2,12 +2,14 @@
 using UnityEngine.SceneManagement;
 
 public class mainMenu : MonoBehaviour {
-    private GameObject settingsMenu, levelMenu;
+	private GameObject settingsMenu, levelMenu;
+	private AudioSource buttonSound;
 
     void Awake()
     {
         this.settingsMenu = GameObject.Find("Settings Menu");
         this.levelMenu = GameObject.Find("Level Select Menu");
+		this.buttonSound = GameObject.Find("Button Sound").GetComponent<AudioSource>();
     }
 
 	// Use this for initialization
@@ -24,21 +26,24 @@ public class mainMenu : MonoBehaviour {
     {
         this.levelMenu.SetActive(true);
         this.gameObject.SetActive(false);
+		playSound ();
     }
 
     public void settingsButton()
     {
         this.settingsMenu.SetActive(true);
         this.gameObject.SetActive(false);
+		playSound ();
     }
 
     public void exitButton()
     {
         Application.Quit();
+		playSound ();
     }
 
-    public void demoButton()
-    {
-        SceneManager.LoadScene("Help Menu");
-    }
+	private void playSound()
+	{
+		this.buttonSound.Play();
+	}
 }

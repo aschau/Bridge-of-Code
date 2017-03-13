@@ -2,7 +2,12 @@
 using UnityEngine.SceneManagement;
 
 public class levelSelect : MonoBehaviour {
+	private AudioSource buttonSound;
 
+	void Awake()
+	{
+		this.buttonSound = GameObject.Find("Button Sound").GetComponent<AudioSource>();
+	}
 	// Use this for initialization
 	void Start () {
 		
@@ -16,5 +21,11 @@ public class levelSelect : MonoBehaviour {
     public void backButton()
     {
         SceneManager.LoadScene("Main Menu");
+		playSound ();
     }
+
+	private void playSound()
+	{
+		this.buttonSound.Play();
+	}
 }

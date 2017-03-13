@@ -13,11 +13,17 @@ public class codeFragment : MonoBehaviour {
     private playerCamera cameraScript;
     private Text codeText;
 
+	private AudioSource buildSound;
+	private AudioSource deathSound;
+
     void Awake()
     {
         mainCamera = GameObject.Find("Main Camera");
         cameraScript = mainCamera.GetComponent<playerCamera>();
         codeText = this.transform.FindChild("Text").GetComponent<Text>();
+
+		this.buildSound = GameObject.Find("Build Sound").GetComponent<AudioSource>();
+		this.deathSound = GameObject.Find("Death Sound").GetComponent<AudioSource>();
     }
 
 	// Use this for initialization
@@ -69,6 +75,7 @@ public class codeFragment : MonoBehaviour {
                     if (hit.transform.name == this.text)
                     {
                         hit.transform.GetComponent<codePlacement>().correct = true;
+						playbuildSound ();
                     }
                     this.gameObject.SetActive(false);
 
@@ -82,6 +89,7 @@ public class codeFragment : MonoBehaviour {
             else
             {
                 this.transform.position = origin;
+				playdeathSound ();
             }
         }
 
@@ -91,4 +99,14 @@ public class codeFragment : MonoBehaviour {
     {
         return Physics2D.Raycast(new Vector2(camera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition).origin.x, camera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition).origin.y), new Vector2(camera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition).direction.x, camera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition).direction.y));
     }
+
+	private void playbuildSound()
+	{
+		this.buildSound.Play();
+	}
+
+	private void playdeathSound()
+	{
+		this.deathSound.Play();
+	}
 }
