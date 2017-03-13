@@ -32,5 +32,10 @@ public class pause : MonoBehaviour {
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
 
+
+    public void nextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }
 
