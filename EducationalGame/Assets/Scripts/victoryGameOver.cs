@@ -39,14 +39,18 @@ public class victoryGameOver : MonoBehaviour {
 
 	    if (!sceneControl.paused)
 	    {
-	        if (this.playerController.dead)
+            print(this.playerController.currentPoint);
+            print(this.playerController.walkPoints.Count);
+            if (this.playerController.dead)
 	        {
-	            StartCoroutine(DeadCoroutine());
+                playWinSound();
+                StartCoroutine(DeadCoroutine());
 
 	        }
 
-            else if ((this.playerController.currentPoint == this.playerController.walkPoints.Count - 1) && this.playerController.move) 
+            else if ((this.playerController.currentPoint == (this.playerController.walkPoints.Count - 1)) && this.playerController.move && this.playerController.stopMove) 
             {
+                playLoseSound();
                 StartCoroutine(WinCoroutine());
             }
 
@@ -59,21 +63,26 @@ public class victoryGameOver : MonoBehaviour {
     {
 
         //This is a coroutine
-		playWinSound ();
-        yield return new WaitForSeconds(2.5f); //Wait....
+        
+        yield return new WaitForSeconds(0.5f); //Wait....
         //sceneControl.togglePause();
+
         _victory.SetActive(true);
+        
 
     }
 
     IEnumerator DeadCoroutine()
     {
         //This is a coroutine
-		playLoseSound ();
-        yield return new WaitForSeconds(0.85f); //Wait...
-       // sceneControl.togglePause();
-        //do something else
+        
+        yield return new WaitForSeconds(0.5f); //Wait...
+                                                // sceneControl.togglePause();
+                                                //do something else
+        
         _gameOver.SetActive(true);
+       
+
     }
 
     public void loadVictory()

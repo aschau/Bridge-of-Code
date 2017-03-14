@@ -9,7 +9,9 @@ public class playerControl : MonoBehaviour {
     public bool dead;
     public int currentPoint;
     public Animator anim;
-    public bool move; 
+    public bool move;
+
+    public bool stopMove; 
 
 
 
@@ -27,7 +29,8 @@ public class playerControl : MonoBehaviour {
         this.dead = false;
         this.currentPoint = 0;
 
-        this.move = false; 
+        this.move = false;
+        this.stopMove = false; 
 
     }
 	
@@ -59,6 +62,11 @@ public class playerControl : MonoBehaviour {
                     if (this.currentPoint < this.walkPoints.Count - 1)
                     {
                         this.currentPoint++;
+                    }
+                    else
+                    {
+                        stopMove = true; 
+
                     }
                 }
 
