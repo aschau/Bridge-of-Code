@@ -42,8 +42,10 @@ public class dialogueControl : MonoBehaviour {
                 string[] temp = textFile.text.Split(new string[] { System.Environment.NewLine + "|" + System.Environment.NewLine, "\n|\r\n" }, StringSplitOptions.None);
                 this.textList = new string[1];
                 this.textList[0] = temp[index];
+                Debug.Log(index + ", " + temp[index]);
                 this.index = 0;
                 this.printText();
+                this.gameObject.SetActive(true);
                 this.advanceButton.interactable = false;
             }
 

@@ -44,15 +44,16 @@ public class tutorialControl : MonoBehaviour {
 
 
                 }
-                else if (this.playerController.dead)
-                {
-                    //sceneControl.toggleLock();
-                    //sceneControl.togglePause();
-                    this.dControl.startDialogue(this.failure, this.index);
-
-                }
             }
 		}
+
+        if (this.playerController.dead)
+        {
+            //sceneControl.toggleLock();
+            //sceneControl.togglePause();
+            this.dControl.startDialogue(this.failure, this.index);
+
+        }
 	}
 
 	private void toggleChatBox()

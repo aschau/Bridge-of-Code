@@ -9,13 +9,11 @@ public class playerCamera : MonoBehaviour {
     private Vector2 leftCorner, rightCorner, mouseOrigin;
     private float cameraWidth, cameraHeight;
     private GameObject player;
-    private sceneControl sceneController;
 
     void Awake()
     {
         this.leftCorner = GameObject.Find("Left Bound").transform.position;
         this.rightCorner = GameObject.Find("Right Bound").transform.position;
-        this.sceneController = GameObject.Find("Scene Control").GetComponent<sceneControl>();
         this.player = GameObject.Find("Player");
     }
 

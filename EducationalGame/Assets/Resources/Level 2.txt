@@ -6,4 +6,4 @@ Scroll around by dragging to get a look and see at what we have to deal with.
 |
 *Help me make a bridge by dragging the correct piece of code into the correct slot.
 |
-Yay! We're halfway there! Let's get out of this swamp.
+I think you got the hang of it from here! Remember if you need help, just tap that "?" on the top left.

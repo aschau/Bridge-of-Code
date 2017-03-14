@@ -11,7 +11,6 @@ public class codeFragment : MonoBehaviour {
     private Vector3 origin;
     private GameObject mainCamera;
     private playerCamera cameraScript;
-    private playerControl player;
     private Text codeText;
 
 	private AudioSource buildSound;
@@ -21,8 +20,6 @@ public class codeFragment : MonoBehaviour {
         mainCamera = GameObject.Find("Main Camera");
         cameraScript = mainCamera.GetComponent<playerCamera>();
         codeText = this.transform.FindChild("Text").GetComponent<Text>();
-        this.player = GameObject.Find("Player").GetComponent<playerControl>();
-
         this.buildSound = GameObject.Find("Build Sound").GetComponent<AudioSource>();
     }
 

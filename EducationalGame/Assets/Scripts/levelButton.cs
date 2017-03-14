@@ -17,6 +17,7 @@ public class levelButton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Debug.Log(levelCount);
 		if (levelCount < Convert.ToInt32(this.gameObject.name.Substring(5)))
 		{
 			myButton.interactable = false;

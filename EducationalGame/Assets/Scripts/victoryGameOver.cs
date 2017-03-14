@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using System;
 public class victoryGameOver : MonoBehaviour {
 
     //gameOver & victory load:
@@ -63,6 +63,12 @@ public class victoryGameOver : MonoBehaviour {
     private void gameWin()
     {
         _victory.SetActive(true);
+        if (levelButton.levelCount == Convert.ToInt32(SceneManager.GetActiveScene().name.Substring(5)))
+        {
+            levelButton.levelCount++;
+            PlayerPrefs.SetInt("levelCount", levelButton.levelCount);
+            PlayerPrefs.Save();
+        }
     }
 
     private void gameLose()

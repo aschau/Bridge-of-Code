@@ -1,1 +1,3 @@
-Oh no! An "If Else" statement will always start with "If" and end with "Else". Try again! You got this!
+Oh no! You can't start a set of conditions without an "if"! Try again! You got this!
+|
+Shoot! Make sure to look at what other fragments you have to work with! "elif" always goes before "else"!
