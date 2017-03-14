@@ -8,9 +8,6 @@ public class tutorialControl : MonoBehaviour {
 	private dialogueControl dControl;
 	private int index = 0; //which part of the tutorial that the user has to interact with, in order
 
-	//gameOver & victory load:
-	private GameObject _gameOver;
-	private GameObject _victory;
 	void Awake()
 	{
 		this.player = GameObject.Find("Player");

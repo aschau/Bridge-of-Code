@@ -12,6 +12,7 @@ public class victoryGameOver : MonoBehaviour {
 	private AudioSource winSound;
 	private AudioSource loseSound;
 	private AudioSource buttonSound;
+    private bool toggled;
 
     void Awake()
     {
@@ -29,29 +30,29 @@ public class victoryGameOver : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        _gameOver.SetActive(false);
-        _victory.SetActive(false);
+        //_gameOver.SetActive(false);
+        //_victory.SetActive(false);
 
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-	    if (!sceneControl.paused)
+	    if (!sceneControl.paused && !this.toggled)
 	    {
-            print(this.playerController.currentPoint);
-            print(this.playerController.walkPoints.Count);
             if (this.playerController.dead)
 	        {
-                playWinSound();
-                StartCoroutine(DeadCoroutine());
+                playLoseSound();
+                Invoke("gameLose", 0.5f);
+                this.toggled = true;
 
 	        }
 
             else if ((this.playerController.currentPoint == (this.playerController.walkPoints.Count - 1)) && this.playerController.move && this.playerController.stopMove) 
             {
-                playLoseSound();
-                StartCoroutine(WinCoroutine());
+                playWinSound();
+                Invoke("gameWin", 0.5f);
+                this.toggled = true;
             }
 
           
@@ -59,43 +60,15 @@ public class victoryGameOver : MonoBehaviour {
 
 	}
 
-    IEnumerator WinCoroutine()
+    private void gameWin()
     {
-
-        //This is a coroutine
-        
-        yield return new WaitForSeconds(0.5f); //Wait....
-        //sceneControl.togglePause();
-
         _victory.SetActive(true);
-        
-
     }
 
-    IEnumerator DeadCoroutine()
+    private void gameLose()
     {
-        //This is a coroutine
-        
-        yield return new WaitForSeconds(0.5f); //Wait...
-                                                // sceneControl.togglePause();
-                                                //do something else
-        
         _gameOver.SetActive(true);
-       
-
-    }
-
-    public void loadVictory()
-    {
-
-
-
-    }
-
-
-    public void loadGameOver()
-    {
-        
+        Debug.Log(_gameOver.activeSelf);
     }
 
     public void load(string sceneName)

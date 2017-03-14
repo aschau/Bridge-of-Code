@@ -2,7 +2,7 @@ Wowzers, this level looks a lot harder than that last one. I don't think my frie
 |
 Ah, so there are 3 different gaps we have to fill this time. A "if", "elif", and "else" should fit in these!
 |
-Now that you have the jist on what your output is from scrolling, this should be a lot easier!
+Scroll around by dragging to get a look and see at what we have to deal with.
 |
 *Help me make a bridge by dragging the correct piece of code into the correct slot.
 |

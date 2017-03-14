@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class codePlacement : MonoBehaviour {
     public bool activated, correct, triggered;
+    public int variableAdjustment = 0;
+    private AudioSource deathSound;
+    private currentVariable variable;
+
+    void Awake()
+    {
+        this.deathSound = GameObject.Find("Death Sound").GetComponent<AudioSource>();
+        this.variable = GameObject.Find("Variable Panel").GetComponent<currentVariable>();
+        this.GetComponent<Collider2D>().enabled = false;
+    }
+
 	// Use this for initialization
 	void Start () {
         this.activated = false;
@@ -23,6 +34,17 @@ public class codePlacement : MonoBehaviour {
             other.gameObject.GetComponent<playerControl>().dead = true;
             this.GetComponent<Collider2D>().enabled = false;
             this.gameObject.SetActive(false);
+            this.playdeathSound();
         }
+
+        if (this.variableAdjustment != 0)
+        {
+            this.variable.updateCurrentVariable(this.variableAdjustment);
+        }
+    }
+
+    private void playdeathSound()
+    {
+        this.deathSound.Play();
     }
 }
