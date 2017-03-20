@@ -18,12 +18,12 @@ public class dialogueControl : MonoBehaviour {
     {
         this.textBox = this.transform.FindChild("Text").GetComponent<Text>();
         this.advanceButton = this.transform.FindChild("Chat Head").GetComponent<Button>();
+
         //textFile = (TextAsset)Resources.Load(SceneManager.GetActiveScene().name);
     }
 
 	// Use this for initialization
 	void Start () {
-        this.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
