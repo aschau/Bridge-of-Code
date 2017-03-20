@@ -48,7 +48,7 @@ public class victoryGameOver : MonoBehaviour {
 
 	        }
 
-            else if ((this.playerController.currentPoint == (this.playerController.walkPoints.Count - 1)) && this.playerController.move && this.playerController.stopMove) 
+            else if (((this.playerController.currentPoint == (this.playerController.walkPoints.Count - 1)) && this.playerController.move && this.playerController.stopMove) || Input.GetKeyDown(KeyCode.K))
             {
                 playWinSound();
                 Invoke("gameWin", 0.5f);

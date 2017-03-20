@@ -63,6 +63,7 @@ public class dialogueControl : MonoBehaviour {
                     this.locked = false;
                 }
                 this.printText();
+                this.gameObject.SetActive(true);
             }
         }
     }
